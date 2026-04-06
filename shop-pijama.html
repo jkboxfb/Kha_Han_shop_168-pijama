@@ -1,154 +1,96 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Shop Pijama</title>
-
-<style>
-body {
-  font-family: Arial;
-  margin: 0;
-  background: #fff0f5;
-}
-
-header {
-  background: #ff69b4;
-  color: white;
-  padding: 15px;
-  text-align: center;
-  font-size: 26px;
-}
-
-.cart {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.product {
-  background: white;
-  border-radius: 15px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-}
-
-.product img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-button {
-  background: #ff1493;
-  color: white;
-  border: none;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #c71585;
-}
-
-#cartBox {
-  display: none;
-  position: fixed;
-  right: 10px;
-  top: 60px;
-  background: white;
-  padding: 15px;
-  width: 250px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-}
-
-footer {
-  text-align: center;
-  background: #ff69b4;
-  color: white;
-  padding: 10px;
-}
-</style>
-
+  <meta charset="UTF-8">
+  <title>Shop Pijama</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #fff5f7;
+    }
+    header {
+      background: pink;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    button {
+      background: hotpink;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: deeppink;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: pink;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-  🛍️ Shop Pijama Cute
+  🛍️ Shop Pijama Xinh Xắn
 </header>
-
-<div class="cart" onclick="toggleCart()">
-  🛒 Giỏ hàng (<span id="count">0</span>)
-</div>
-
-<div id="cartBox">
-  <h3>Giỏ hàng</h3>
-  <ul id="cartItems"></ul>
-  <button onclick="order()">Đặt hàng</button>
-</div>
 
 <div class="container">
 
-<div class="product">
-  <img src="https://via.placeholder.com/200">
-  <h3>Pijama Gấu</h3>
-  <p>150.000đ</p>
-  <button onclick="addToCart('Pijama Gấu')">Thêm vào giỏ</button>
-</div>
+  <div class="product">
+    <img src="https://via.placeholder.com/200" alt="">
+    <h3>Pijama Dễ Thương</h3>
+    <p>150.000đ</p>
+    <button onclick="buy()">Mua ngay</button>
+  </div>
 
-<div class="product">
-  <img src="https://via.placeholder.com/200">
-  <h3>Pijama Lụa</h3>
-  <p>250.000đ</p>
-  <button onclick="addToCart('Pijama Lụa')">Thêm vào giỏ</button>
-</div>
+  <div class="product">
+    <img src="https://via.placeholder.com/200" alt="">
+    <h3>Pijama Lụa</h3>
+    <p>250.000đ</p>
+    <button onclick="buy()">Mua ngay</button>
+  </div>
 
-<div class="product">
-  <img src="https://via.placeholder.com/200">
-  <h3>Pijama Hàn Quốc</h3>
-  <p>200.000đ</p>
-  <button onclick="addToCart('Pijama Hàn Quốc')">Thêm vào giỏ</button>
-</div>
+  <div class="product">
+    <img src="https://via.placeholder.com/200" alt="">
+    <h3>Pijama Hàn Quốc</h3>
+    <p>200.000đ</p>
+    <button onclick="buy()">Mua ngay</button>
+  </div>
 
 </div>
 
 <footer>
-  📞 Zalo: 0364 536 716 | Facebook:https://www.facebook.com/profile.php?id=61577920618119
+  📞 Liên hệ: 0123 456 789 | Facebook: Shop của bạn
 </footer>
 
 <script>
-let cart = [];
-
-function addToCart(name) {
-  cart.push(name);
-  document.getElementById("count").innerText = cart.length;
-
-  let li = document.createElement("li");
-  li.innerText = name;
-  document.getElementById("cartItems").appendChild(li);
-}
-
-function toggleCart() {
-  let box = document.getElementById("cartBox");
-  box.style.display = box.style.display === "none" ? "block" : "none";
-}
-
-function order() {
-  alert("Bạn sẽ được chuyển qua Zalo/Facebook để đặt hàng!");
-}
+  function buy() {
+    alert("Bạn đã bấm mua hàng! Hãy chỉnh sửa chức năng này sau.");
+  }
 </script>
 
 </body>
